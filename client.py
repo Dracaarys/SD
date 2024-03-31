@@ -14,7 +14,7 @@ def receive():
                 print(message)
         
         except:
-            print("Um erro ocorreu")
+            print("você saiu")
             client.close()
             break
 
@@ -24,6 +24,7 @@ def write():
         message = input("")
         if message == 'exit':  # Adicionando a função de saída
             client.send(message.encode('utf-8'))
+            client.close()
             break
         message = f'{nome}: {message}'
         client.send(message.encode("utf-8"))
