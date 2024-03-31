@@ -1,4 +1,4 @@
-import socket 
+import socket
 import threading
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -19,8 +19,13 @@ def receive():
             break
 
 def write():
+    global nome
     while True:
-        message = f'{nome}: {input("")}'
+        message = input("")
+        if message == 'exit':  # Adicionando a função de saída
+            client.send(message.encode('utf-8'))
+            break
+        message = f'{nome}: {message}'
         client.send(message.encode("utf-8"))
 
 nome = input("Digite seu nome: ")
